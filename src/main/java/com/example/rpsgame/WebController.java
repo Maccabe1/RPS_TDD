@@ -5,18 +5,26 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.Random;
 @Controller
 public class WebController {
-    @GetMapping("/playagame")
-    public String playGame(@RequestParam(name="choice", required=false) String thePlayersChoice, Model model){
+    private Computer computer;
 
-        String[] computersChoice = {"rock","paper","scissors"};
-        String computerRandomChoice = (computersChoice[new Random().nextInt(computersChoice.length)]);
+    public WebController(Computer computer) {
+        this.computer = computer;
+    }
+
+    @GetMapping("/playagame")
+    public String playGame(
+            @RequestParam(name="choice", required=false) String thePlayersChoice,
+            Model model
+    ){
+        String computerRandomChoice = computer.getComputerChoice();
 
         if (thePlayersChoice == null) {
             return "index";
-        } String theOutcome = "error";
+        }
+
+        String theOutcome;
 
         if(thePlayersChoice.equals("rock") && computerRandomChoice.equals("scissors") ||
                 thePlayersChoice.equals("paper") && computerRandomChoice.equals("rock") ||
@@ -31,6 +39,7 @@ public class WebController {
         model.addAttribute("personChoice", thePlayersChoice);
         model.addAttribute("computerChoice", computerRandomChoice);
         model.addAttribute("outcome", theOutcome);
+
         return "results";
     }
 }

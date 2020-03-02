@@ -19,15 +19,10 @@ public class ComputerOpponent implements Computer, Cheater {
     }
 
     public String getChoiceViaCheating(String playerChoice) {
-
         int readPlayersChoice = Arrays.asList(COMPUTERS_CHOICE).indexOf(playerChoice);
-        int computerChoosesBestOption = readPlayersChoice + 1;
 
-        while(computerChoosesBestOption <= 2){
+        int computerChoosesBestOption = (readPlayersChoice + 1) % COMPUTERS_CHOICE.length;
 
-            return COMPUTERS_CHOICE[computerChoosesBestOption];
-        }
-            int choice = 0;
-            return COMPUTERS_CHOICE[choice];
+        return COMPUTERS_CHOICE[computerChoosesBestOption];
     }
 }

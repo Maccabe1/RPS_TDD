@@ -9,6 +9,6 @@ import java.util.Random;
 public class RpsConfiguration {
     @Bean
     public Computer computer() {
-        return new RandomComputer(new Random());
+        return new ComputerOpponent(new Random());
     }
 }

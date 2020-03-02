@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -7,10 +7,17 @@
 <body>
 
 <p>Which one will it be?</p>
+<form action="/playagame" method="post">
+    <select name="opponent">
+        <option value="computer">Computer</option>
+        <option value="cheater">Cheater</option>
+    </select>
 
-<a href="playagame?choice=rock">rock</a>
-<a href="playagame?choice=paper">paper</a>
-<a href="playagame?choice=scissors">scissors</a>
+    <input type="radio" name="choice" value="rock"> Rock </input>
+    <input type="radio" name="choice" value="paper"> Paper </input>
+    <input type="radio" name="choice" value="scissors"> Scissors </input>
+    <input type="submit" value="Submit">
+</form>
 
 </body>
 </html>

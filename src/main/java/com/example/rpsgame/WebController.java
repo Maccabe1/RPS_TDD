@@ -55,14 +55,14 @@ public class WebController {
 
             case "cheater":
 
-                String computerCheats = cheater.setCheaterChoice(thePlayersChoice);
+                String computerCheats = cheater.getChoiceViaCheating(thePlayersChoice);
 
                 if (
                     thePlayersChoice.equals("rock") ||
                     thePlayersChoice.equals("paper") ||
                     thePlayersChoice.equals("scissors"))
                 {
-                    cheater.setCheaterChoice(thePlayersChoice);
+                    cheater.getChoiceViaCheating(thePlayersChoice);
                     theOutcome = "Computer Wins";
 
                     model.addAttribute("opponentType", theOpponentType);

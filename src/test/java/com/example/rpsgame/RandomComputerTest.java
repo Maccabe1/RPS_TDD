@@ -1,14 +1,10 @@
 package com.example.rpsgame;
 
-import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.Test;
-import org.springframework.ui.ExtendedModelMap;
-import org.springframework.ui.Model;
 
 import java.util.Random;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.CoreMatchers.equalTo;
 
 
 public class RandomComputerTest {
@@ -37,5 +33,32 @@ public class RandomComputerTest {
         String choice = randomComputer.getComputerChoice();
 
         assertThat(choice).isEqualTo("rock");
+    }
+
+    @Test
+    void whenCheating_whenPlayerChoosesRock_itChoosesPaper() {
+        Cheater cheater = new ComputerOpponent(null);
+
+        String cheatersChoice = cheater.getChoiceViaCheating("rock");
+
+        assertThat(cheatersChoice).isEqualTo("paper");
+    }
+
+    @Test
+    void whenCheating_whenPlayerChoosesScissors_itChoosesRock() {
+        Cheater cheater = new ComputerOpponent(null);
+
+        String cheatersChoice = cheater.getChoiceViaCheating("scissors");
+
+        assertThat(cheatersChoice).isEqualTo("rock");
+    }
+
+    @Test
+    void whenCheating_whenPlayerChoosesPaper_itChoosesScissors() {
+        Cheater cheater = new ComputerOpponent(null);
+
+        String cheatersChoice = cheater.getChoiceViaCheating("paper");
+
+        assertThat(cheatersChoice).isEqualTo("scissors");
     }
 }

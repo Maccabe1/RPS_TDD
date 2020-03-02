@@ -18,7 +18,7 @@ public class ComputerOpponent implements Computer, Cheater {
         return COMPUTERS_CHOICE[choice];
     }
 
-    public String setCheaterChoice(String playerChoice) {
+    public String getChoiceViaCheating(String playerChoice) {
 
         int readPlayersChoice = Arrays.asList(COMPUTERS_CHOICE).indexOf(playerChoice);
         int computerChoosesBestOption = readPlayersChoice + 1;

@@ -1,10 +1,14 @@
 package com.example.rpsgame;
 
+import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.Test;
+import org.springframework.ui.ExtendedModelMap;
+import org.springframework.ui.Model;
 
 import java.util.Random;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.CoreMatchers.equalTo;
 
 
 public class RandomComputerTest {

@@ -30,9 +30,4 @@ public class ComputerOpponent implements Computer, Cheater {
             int choice = 0;
             return COMPUTERS_CHOICE[choice];
     }
-
-    public String getCheaterChoice() {
-
-        return null;
-    }
 }

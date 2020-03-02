@@ -63,7 +63,6 @@ public class WebController {
                     thePlayersChoice.equals("scissors"))
                 {
                     cheater.setCheaterChoice(thePlayersChoice);
-                    cheater.getCheaterChoice();
                     theOutcome = "Computer Wins";
 
                     model.addAttribute("opponentType", theOpponentType);

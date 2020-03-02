@@ -8,15 +8,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class WebController {
 
-    private Computer computer;
-    private Cheater cheater;
+    private Computer randomComputer;
+    private Computer cheatingComputer;
 
     public WebController(
-            Computer computer,
-            Cheater cheater
+            RandomComputer randomComputer,
+            CheatingComputer cheatingComputer
     ) {
-        this.computer = computer;
-        this.cheater = cheater;
+        this.randomComputer = randomComputer;
+        this.cheatingComputer = cheatingComputer;
     }
 
     @PostMapping("/playagame")
@@ -29,17 +29,19 @@ public class WebController {
             return "index";
         }
 
-        String computerChoice = null;
+        Computer chosenComputer = null;
 
         switch (theOpponentType) {
             case "computer":
-                computerChoice = computer.getComputerChoice();
+                chosenComputer = randomComputer;
                 break;
 
             case "cheater":
-                computerChoice = cheater.getChoiceViaCheating(thePlayersChoice);
+                chosenComputer = cheatingComputer;
                 break;
         }
+
+        String computerChoice = chosenComputer.getComputerChoice(thePlayersChoice);
 
         model.addAttribute("opponentType", theOpponentType);
         model.addAttribute("personChoice", thePlayersChoice);

@@ -1,6 +1,5 @@
 package com.example.rpsgame;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -8,25 +7,24 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.ui.ExtendedModelMap;
 import org.springframework.ui.Model;
 
-import java.util.Random;
-
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 public class TestByInstantiatingController {
 
     @Mock
-    Computer computer;
-    Cheater cheater;
+    RandomComputer randomComputer;
 
     WebController controller;
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.initMocks(this);
-        controller = new WebController(computer, cheater);
-        when(computer.getComputerChoice()).thenReturn("rock");
+        controller = new WebController(randomComputer, null);
+
+        when(randomComputer.getComputerChoice(any())).thenReturn("rock");
     }
 
     @Test
@@ -47,7 +45,7 @@ public class TestByInstantiatingController {
 
     @Test
     void itPassesTheComputerChoiceToTheModel() {
-        when(computer.getComputerChoice()).thenReturn("scissors");
+        when(randomComputer.getComputerChoice(any())).thenReturn("scissors");
 
         Model model = new ExtendedModelMap();
 
@@ -58,7 +56,7 @@ public class TestByInstantiatingController {
 
     @Test
     void rockBeatsScissors() {
-        when(computer.getComputerChoice()).thenReturn("scissors");
+        when(randomComputer.getComputerChoice(any())).thenReturn("scissors");
 
         Model model = new ExtendedModelMap();
 
@@ -69,7 +67,7 @@ public class TestByInstantiatingController {
 
     @Test
     void scissorsLosesToRock() {
-        when(computer.getComputerChoice()).thenReturn("rock");
+        when(randomComputer.getComputerChoice(any())).thenReturn("rock");
 
         Model model = new ExtendedModelMap();
 
@@ -80,7 +78,7 @@ public class TestByInstantiatingController {
 
     @Test
     void playerChoiceMatchesComputerChoice() {
-        when(computer.getComputerChoice()).thenReturn("rock");
+        when(randomComputer.getComputerChoice(any())).thenReturn("rock");
 
         Model model = new ExtendedModelMap();
 

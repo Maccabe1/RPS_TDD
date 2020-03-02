@@ -8,7 +8,13 @@ import java.util.Random;
 @Configuration
 public class RpsConfiguration {
     @Bean
-    public Computer computer() {
-        return new ComputerOpponent(new Random());
+    public RandomComputer randomComputer() {
+        return new RandomComputer(new Random());
     }
+
+    @Bean
+    public CheatingComputer cheatingComputer() {
+        return new CheatingComputer();
+    }
+
 }
